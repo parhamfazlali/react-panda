@@ -1,0 +1,9 @@
+{
+  "name": "react-panda",
+  "version": "1.0.0",
+  "description": "react boilerplate",
+  "main": "index.js",
+  "repository": "https://github.com/parham-fazlali/react-panda.git",
+  "author": "Parham <parham.fazlali@gmail.com>",
+  "license": "MIT"
+}
