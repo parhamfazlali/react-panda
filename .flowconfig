@@ -11,13 +11,13 @@
 [libs]
 ./node_modules/fbjs/flow/lib/dev.js
 ; The app's global variables are declared here
-tools/flow/definitions
+; config/flow/definitions
 
 [options]
 emoji=true
 
 ; Avoid CSS modules error
-module.name_mapper='^\(.*\)\.\(css\|scss\)$' -> '<PROJECT_ROOT>/tools/flow/stubs/CSSModules.js.flow'
+module.name_mapper='^\(.*\)\.\(css\|scss\)$' -> '<PROJECT_ROOT>/config/flow/stubs/CSSModules.js.flow'
 module.name_mapper='^actions\(.*\)$' -> '<PROJECT_ROOT>/src/actions/\1'
 module.name_mapper='^pages\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'
 module.name_mapper='^types\(.*\)$' -> '<PROJECT_ROOT>/src/types/\1'
