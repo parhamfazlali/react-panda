@@ -46,7 +46,7 @@
       }
     },
     "clean:build": {
-      "command": "rimraf ./public/assets"
+      "command": "rimraf ./public/build"
     }
   },
   "nodemonConfig": {
