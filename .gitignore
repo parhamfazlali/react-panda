@@ -4,3 +4,6 @@
 
 # directories
 node_modules
+public/build
+public/loadable-stats.json
+public/webpack-assets.json

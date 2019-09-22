@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 
+import axiosMiddleware from './axiosMiddleware';
 import createRootReducer from '../src/reducers';
 
 type argv = {
@@ -12,7 +13,7 @@ type argv = {
   url?: string
 };
 
-export default ({ initialState, url }: argv) => {
+export default ({ initialState, url, serverToken }: argv) => {
   const isServer = typeof window === 'undefined';
   // Create a history depending on the environment
   const history = isServer
@@ -22,7 +23,8 @@ export default ({ initialState, url }: argv) => {
     : createBrowserHistory();
   const middlewares = [
     routerMiddleware(history),
-    thunk
+    thunk,
+    axiosMiddleware(serverToken)
     // Add other middlewares here
   ];
   // Use Redux DevTools Extension in development

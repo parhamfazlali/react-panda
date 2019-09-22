@@ -39,7 +39,12 @@ const getPlugins = () => {
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false,
-      __DEV__: isDev
+      __DEV__: isDev,
+      'process.env': {
+        NODE_HOST: JSON.stringify(process.env.NODE_HOST),
+        NODE_PORT: JSON.stringify(process.env.NODE_PORT),
+        API_URL: JSON.stringify(process.env.API_URL)
+      }
     })
   ];
 
@@ -99,8 +104,8 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(process.cwd(), 'public/assets'),
-    publicPath: '/assets/',
+    path: path.resolve(process.cwd(), 'public/build'),
+    publicPath: '/build/',
     // Don't use chunkhash in development it will increase compilation time
     filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',

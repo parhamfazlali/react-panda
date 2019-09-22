@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
 import { loadAll as loadAllUsers } from 'actions/users.action';
 import styles from './styles.scss';
 
-type Props = { home: Object, loadAllUsers: () => void };
+type Props = { users: Object, loadAllUsers: () => void };
 
 // Export this for unit testing more easily
 export class Users extends PureComponent<Props> {
@@ -18,17 +18,19 @@ export class Users extends PureComponent<Props> {
   }
 
   renderUserList = () => {
-    const { home } = this.props;
+    const { users } = this.props;
 
-    if (
-      !home.readyStatus ||
-      home.readyStatus === 'USERS_INVALID' ||
-      home.readyStatus === 'USERS_REQUESTING'
-    )
-      return <p>Loading...</p>;
+    if (users.fetching) return <p>Loading...</p>;
 
-    if (home.readyStatus === 'USERS_FAILURE')
-      return <p>Oops, Failed to load list!</p>;
+    // if (
+    //   !home.readyStatus ||
+    //   home.readyStatus === 'USERS_INVALID' ||
+    //   home.readyStatus === 'USERS_REQUESTING'
+    // )
+    //   return <p>Loading...</p>;
+
+    // if (home.readyStatus === 'USERS_FAILURE')
+    //   return <p>Oops, Failed to load list!</p>;
 
     // return <UserList list={home.list} />;
 
@@ -45,7 +47,7 @@ export class Users extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = ({ home }: Object) => ({ home });
+const mapStateToProps = ({ users }: Object) => ({ users });
 
 const mapDispatchToProps = { loadAllUsers };
 

@@ -49,6 +49,12 @@
       "command": "rimraf ./public/assets"
     }
   },
+  "nodemonConfig": {
+    "watch": [
+      "src/server.js",
+      "src/utils/renderHtml.js"
+    ]
+  },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -70,6 +76,7 @@
     "css-modules-require-hook": "^4.2.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "express": "^4.17.1",
+    "form-data": "^2.5.1",
     "helmet": "^3.21.1",
     "history": "^4.10.1",
     "hpp": "^0.2.2",
@@ -96,6 +103,7 @@
     "serve-favicon": "^2.5.0",
     "styled-components": "^4.3.2",
     "styled-theme": "^0.3.3",
+    "universal-cookie": "^4.0.2",
     "webpack": "^4.40.2",
     "yup": "^0.27.0"
   },

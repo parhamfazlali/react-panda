@@ -20,7 +20,7 @@ export default function(state: Object = initialState, action: Object = {}) {
       return {
         ...state,
         fetching: false,
-        data: action.result.profile
+        data: action.result
       };
     case ActionTypes.LOAD_ALL_USERS_FAILURE:
       return {
