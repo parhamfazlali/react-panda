@@ -8,6 +8,7 @@ export default {
     htmlAttributes: { lang: 'en' },
     title: 'React Panda 🐼',
     titleTemplate: 'React Panda 🐼 - %s',
+    pandaImage: '/assets/images/panda-logo.png',
     meta: [
       {
         name: 'description',
