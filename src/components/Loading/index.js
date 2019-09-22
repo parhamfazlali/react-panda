@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-import styles from './styles.scss';
+import loadingWrapper from './loading.style';
 
 export default () => {
   return (
-    <div className={styles.Loading}>
+    <loadingWrapper>
       <p>Loading...</p>
-    </div>
+    </loadingWrapper>
   );
 };
