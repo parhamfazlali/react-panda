@@ -135,7 +135,8 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: USE_CSS_MODULES && {
-                localIdentName: '[name]__[local]--[hash:base64:5]',
+                localIdentName: '[local]',
+                // localIdentName: '[name]__[local]--[hash:base64:5]',
                 context: path.resolve(process.cwd(), 'src')
               },
               sourceMap: true
@@ -159,7 +160,8 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: USE_CSS_MODULES && {
-                localIdentName: '[name]__[local]--[hash:base64:5]',
+                localIdentName: '[local]',
+                // localIdentName: '[name]__[local]--[hash:base64:5]',
                 context: path.resolve(process.cwd(), 'src')
               },
               sourceMap: true

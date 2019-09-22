@@ -10,7 +10,8 @@ module.exports = () => {
   // CSS modules
   require('css-modules-require-hook')({
     // Must use the same pattern with your webpack config
-    generateScopedName: '[name]__[local]--[hash:base64:5]',
+    generateScopedName: '[local]',
+    // generateScopedName: '[name]__[local]--[hash:base64:5]',
     extensions: ['.css', '.scss', '.sass'],
     prepend: [...postcssConfig.plugins],
     preprocessCss: (data, filename) =>
