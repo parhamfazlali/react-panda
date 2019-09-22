@@ -3,7 +3,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import styles from './styles.scss';
+import StyleWrapper from './error.style';
 
 type Props = { staticContext: Object };
 
@@ -14,9 +14,9 @@ export default ({ staticContext }: Props) => {
   if (staticContext) staticContext.status = '500'; // eslint-disable-line no-param-reassign
 
   return (
-    <div className={styles.NotFound}>
+    <StyleWrapper>
       <Helmet title="Oops" />
       <p>Oops, Internal Server Error</p>
-    </div>
+    </StyleWrapper>
   );
 };
