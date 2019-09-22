@@ -34,6 +34,7 @@ app.use(cookieParser());
 
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
 app.use(favicon(path.resolve(process.cwd(), 'public/favicon.ico')));
+app.use(express.static(path.resolve(process.cwd(), 'public')));
 
 if (__DEV__) {
   /* Run express as webpack dev server */
