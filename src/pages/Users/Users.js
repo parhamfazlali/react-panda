@@ -34,7 +34,7 @@ export class Users extends PureComponent<Props> {
 
     // return <UserList list={home.list} />;
 
-    return <div>hi</div>;
+    return <div>HI</div>;
   };
 
   render() {
