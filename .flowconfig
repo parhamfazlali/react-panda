@@ -1,0 +1,37 @@
+[ignore]
+<PROJECT_ROOT>/public/.*
+<PROJECT_ROOT>/.*/__tests__/.*
+
+; Ignore config-chain
+.*/node_modules/config-chain/test/broken.json
+
+[include]
+.*/src/.*
+
+[libs]
+./node_modules/fbjs/flow/lib/dev.js
+; The app's global variables are declared here
+; config/flow/definitions
+
+[options]
+emoji=true
+
+; Avoid CSS modules error
+module.name_mapper='^\(.*\)\.\(css\|scss\)$' -> '<PROJECT_ROOT>/config/flow/stubs/CSSModules.js.flow'
+module.name_mapper='^actions\(.*\)$' -> '<PROJECT_ROOT>/src/actions/\1'
+module.name_mapper='^pages\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'
+module.name_mapper='^types\(.*\)$' -> '<PROJECT_ROOT>/src/types/\1'
+module.name_mapper='^utils\(.*\)$' -> '<PROJECT_ROOT>/src/utils'
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowFixMeProps
+suppress_type=$FlowFixMeState
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMeProps
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMeState
+
+[version]
+^0.107.0

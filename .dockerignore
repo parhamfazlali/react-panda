@@ -1,0 +1,17 @@
+.git
+.github
+.gitignore
+.env
+.editorconfig
+.nvmrc
+.yvmrc
+
+build/webpack-assets
+node_modules
+
+CHANGELOG.md
+docker-compose.yml
+Dockerfile
+npm-debug.log
+README.md
+yarn-error.log
