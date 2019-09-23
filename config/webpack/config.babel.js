@@ -135,8 +135,7 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: USE_CSS_MODULES && {
-                localIdentName: '[local]',
-                // localIdentName: '[name]__[local]--[hash:base64:5]',
+                localIdentName: '[name]__[local]--[hash:base64:5]',
                 context: path.resolve(process.cwd(), 'src')
               },
               sourceMap: true
@@ -160,8 +159,7 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: USE_CSS_MODULES && {
-                localIdentName: '[local]',
-                // localIdentName: '[name]__[local]--[hash:base64:5]',
+                localIdentName: '[name]__[local]--[hash:base64:5]',
                 context: path.resolve(process.cwd(), 'src')
               },
               sourceMap: true
@@ -169,6 +167,27 @@ module.exports = {
           },
           { loader: 'postcss', options: { sourceMap: true } },
           { loader: 'sass', options: { sourceMap: true } }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css',
+            options: {
+              importLoaders: 3,
+              modules: USE_CSS_MODULES && {
+                localIdentName: '[local]',
+                context: path.resolve(process.cwd(), 'src')
+              },
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'less',
+            options: { sourceMap: true, javascriptEnabled: true }
+          }
         ]
       },
       {
