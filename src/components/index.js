@@ -2,8 +2,6 @@
 
 import ErrorBoundary from './ErrorBoundary';
 import Loading from './Loading';
+import UsersDetails from './Users';
 
-/* @Users */
-export { default as UsersDetails } from './Users';
-
-export { ErrorBoundary, Loading };
+export { ErrorBoundary, Loading, UsersDetails };
