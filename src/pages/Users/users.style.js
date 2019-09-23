@@ -26,7 +26,7 @@ export default styled.div`
 
   .ant-table-thead > tr > th {
     padding: 30px 16px;
-    font-size: 14px;
+    font-size: 15px;
     text-transform: uppercase;
     background-color: #fff;
   }
