@@ -4,48 +4,121 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { get } from 'lodash';
+import { Avatar, Table, Button, Spin, Modal, Icon } from 'antd';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
+import { UsersDetails } from 'components';
 import StyleWrapper from './users.style';
 
 type Props = { users: Object, loadAllUsers: () => void };
 
+type State = {
+  visibleModal: boolean,
+  userId: ?string
+};
+
 // Export this for unit testing more easily
-export class Users extends PureComponent<Props> {
+export class Users extends PureComponent<Props, State> {
+  state = {
+    visibleModal: false,
+    userId: null
+  };
+
+  columns = [
+    {
+      title: '',
+      render: item => (
+        <div>
+          <Avatar size={64} src={item.avatar} />
+        </div>
+      )
+    },
+    {
+      title: 'Full name',
+      render: item => (
+        <div>
+          {item.first_name} {item.last_name}
+        </div>
+      )
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email'
+    },
+    {
+      title: '',
+      className: 'text-right',
+      render: (row: Object) => (
+        <Button
+          size="large"
+          type="primary"
+          shape="round"
+          onClick={() => this.showDetails(row)}
+        >
+          Details
+          <Icon type="right" />
+        </Button>
+      )
+    }
+  ];
+
   componentDidMount() {
     const { loadAllUsers: loadAllPromise } = this.props;
     loadAllPromise();
   }
 
+  showDetails = userId => {
+    this.setState({ userId, visibleModal: true });
+  };
+
+  hideDetails = () => {
+    this.setState({ visibleModal: false });
+  };
+
   renderUserList = () => {
     const { users } = this.props;
 
     const usersList = get(users, 'data.data', []);
+    const pagination = get(users, 'pagination', {});
 
-    if (users.fetching) return <p>Loading...</p>;
+    if (users.fetching) return <Spin />;
 
     return (
       <div>
         <h4>Users List</h4>
-        <ul>
-          {usersList.map(item => (
-            <li key={item.id}>
-              <div>
-                <img src={item.avatar} alt="" />
-              </div>
-              <p>{item.first_name}</p>
-            </li>
-          ))}
-        </ul>
+
+        <Table
+          dataSource={usersList}
+          columns={this.columns}
+          rowKey="id"
+          onChange={this.handlePaginate}
+          pagination={{
+            current: pagination.current_page,
+            total: pagination.total_count
+          }}
+        />
       </div>
     );
   };
 
   render() {
+    const { visibleModal, userId } = this.state;
+
     return (
       <StyleWrapper>
         <Helmet title="Users" />
         {this.renderUserList()}
+
+        <Modal
+          className="c--modal"
+          title=""
+          centered
+          visible={visibleModal}
+          onCancel={this.hideDetails}
+          footer={null}
+        >
+          <UsersDetails user={userId} />
+        </Modal>
       </StyleWrapper>
     );
   }
