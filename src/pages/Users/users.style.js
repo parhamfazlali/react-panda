@@ -7,36 +7,20 @@ export default styled.div`
     font-weight: bold;
   }
 
-  ul {
-    li {
-      display: inline-block;
-      list-style: none;
-      vertical-align: middle;
-      width: 150px;
-      margin: 20px;
+  .ant-table-wrapper {
+    width: 70%;
+    margin: 60px auto;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 50px 0;
+    border-radius: 10px;
+    overflow: hidden;
 
-      div {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        overflow: hidden;
-        border-radius: 50%;
-        vertical-align: middle;
-
-        img {
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      p {
-        display: inline-block;
-        font-size: 15px;
-        font-weight: bold;
-        vertical-align: middle;
-        margin-left: 5px;
-      }
+    .ant-pagination {
+      padding: 15px 30px;
     }
+  }
+
+  .text-right {
+    text-align: right;
   }
 `;
