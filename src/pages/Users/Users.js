@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { get } from 'lodash';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
 import StyleWrapper from './users.style';
@@ -13,28 +14,31 @@ type Props = { users: Object, loadAllUsers: () => void };
 export class Users extends PureComponent<Props> {
   componentDidMount() {
     const { loadAllUsers: loadAllPromise } = this.props;
-
     loadAllPromise();
   }
 
   renderUserList = () => {
     const { users } = this.props;
 
+    const usersList = get(users, 'data.data', []);
+
     if (users.fetching) return <p>Loading...</p>;
 
-    // if (
-    //   !home.readyStatus ||
-    //   home.readyStatus === 'USERS_INVALID' ||
-    //   home.readyStatus === 'USERS_REQUESTING'
-    // )
-    //   return <p>Loading...</p>;
-
-    // if (home.readyStatus === 'USERS_FAILURE')
-    //   return <p>Oops, Failed to load list!</p>;
-
-    // return <UserList list={home.list} />;
-
-    return <div>Everything is ok!</div>;
+    return (
+      <div>
+        <h4>Users List</h4>
+        <ul>
+          {usersList.map(item => (
+            <li key={item.id}>
+              <div>
+                <img src={item.avatar} alt="" />
+              </div>
+              <p>{item.first_name}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
   render() {
