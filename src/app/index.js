@@ -11,17 +11,20 @@ import 'normalize.css/normalize.css'; // eslint-disable-line import/first
 import config from '../../config';
 import styles from './styles.scss';
 
+import 'antd/dist/antd.css';
+
+require('../theme/App.scss');
+
 type Props = { route: Object };
 
 const App = ({ route }: Props) => (
   <div className={styles.App}>
     <Helmet {...config.app} />
     <div className={styles.header}>
-      <h1>{config.app.title}</h1>
+      <img src={config.app.pandaImage} alt="" />
     </div>
-    <hr />
     {/* Child routes won't render without this */}
-    {renderRoutes(route.routes)}
+    <div className={styles.contents}>{renderRoutes(route.routes)}</div>
   </div>
 );
 

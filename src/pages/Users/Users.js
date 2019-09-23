@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
-import styles from './styles.scss';
+import StyleWrapper from './users.style';
 
 type Props = { users: Object, loadAllUsers: () => void };
 
@@ -34,15 +34,15 @@ export class Users extends PureComponent<Props> {
 
     // return <UserList list={home.list} />;
 
-    return <div>hi</div>;
+    return <div>Everything is ok!</div>;
   };
 
   render() {
     return (
-      <div className={styles.Home}>
+      <StyleWrapper>
         <Helmet title="Users" />
         {this.renderUserList()}
-      </div>
+      </StyleWrapper>
     );
   }
 }
