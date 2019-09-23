@@ -23,4 +23,11 @@ export default styled.div`
   .text-right {
     text-align: right;
   }
+
+  .ant-table-thead > tr > th {
+    padding: 30px 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #fff;
+  }
 `;
