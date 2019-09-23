@@ -3,6 +3,7 @@
 *.log
 
 # directories
+coverage
 node_modules
 public/build
 public/loadable-stats.json
