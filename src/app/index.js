@@ -11,8 +11,6 @@ import 'normalize.css/normalize.css'; // eslint-disable-line import/first
 import config from '../../config';
 import styles from './styles.scss';
 
-import 'antd/dist/antd.css';
-
 require('../theme/App.scss');
 
 type Props = { route: Object };

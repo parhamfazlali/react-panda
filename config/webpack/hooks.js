@@ -10,8 +10,7 @@ module.exports = () => {
   // CSS modules
   require('css-modules-require-hook')({
     // Must use the same pattern with your webpack config
-    generateScopedName: '[local]',
-    // generateScopedName: '[name]__[local]--[hash:base64:5]',
+    generateScopedName: '[name]__[local]--[hash:base64:5]',
     extensions: ['.css', '.scss', '.sass'],
     prepend: [...postcssConfig.plugins],
     preprocessCss: (data, filename) =>
@@ -19,6 +18,17 @@ module.exports = () => {
         data,
         file: filename
       }).css,
+    rootDir: path.resolve(process.cwd(), 'src'),
+    devMode: __DEV__
+  });
+
+  // CSS modules
+  require('css-modules-require-hook')({
+    // Must use the same pattern with your webpack config
+    generateScopedName: '[local]',
+    extensions: ['.less'],
+    prepend: [...postcssConfig.plugins],
+    processorOpts: { parser: require('postcss-less').parse },
     rootDir: path.resolve(process.cwd(), 'src'),
     devMode: __DEV__
   });
