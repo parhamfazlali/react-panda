@@ -2,10 +2,12 @@
 
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
+import { reducer as form } from 'redux-form';
 
 import users from './users.reducer';
 
 const reducers = {
+  form,
   users
 };
 

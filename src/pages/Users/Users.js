@@ -10,7 +10,11 @@ import { loadAll as loadAllUsers } from 'actions/users.action';
 import { UsersDetails } from 'components';
 import StyleWrapper from './users.style';
 
-type Props = { users: Object, loadAllUsers: () => void };
+type Props = {
+  users: Object,
+  loadAllUsers: () => void,
+  history: Object
+};
 
 type State = {
   visibleModal: boolean,
@@ -75,6 +79,11 @@ export class Users extends PureComponent<Props, State> {
     this.setState({ visibleModal: false });
   };
 
+  hendleRedirect = () => {
+    const { history } = this.props;
+    history.push('/new-user');
+  };
+
   renderUserList = () => {
     const { users } = this.props;
 
@@ -85,6 +94,18 @@ export class Users extends PureComponent<Props, State> {
     return (
       <div>
         <h4>Users List</h4>
+
+        <div className="add-user">
+          <Button
+            size="large"
+            type="primary"
+            shape="round"
+            icon="plus"
+            onClick={this.hendleRedirect}
+          >
+            Add new user
+          </Button>
+        </div>
 
         <Table
           dataSource={usersList}
