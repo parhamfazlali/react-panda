@@ -12,7 +12,7 @@ COPY . ${HOME_DIR}
 WORKDIR ${HOME_DIR}
 
 RUN set -x \
-    && yarn \
+    && yarn install --pure-lockfile \
     && yarn build \
     && yarn cache clean
 

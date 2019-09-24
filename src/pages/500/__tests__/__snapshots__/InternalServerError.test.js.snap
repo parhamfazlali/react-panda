@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InternalServerError /> renders 1`] = `
+<div
+  className="errorstyle___default-sc-14ginyp-0 ecTVbD"
+>
+  <p>
+    Oops, Internal Server Error
+  </p>
+</div>
+`;
