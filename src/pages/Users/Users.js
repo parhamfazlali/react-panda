@@ -27,19 +27,20 @@ export class Users extends PureComponent<Props, State> {
   columns = [
     {
       title: '',
-      render: item => (
+      dataIndex: 'avatar',
+      render: (avatar: string) => (
         <div>
-          <Avatar size={64} src={item.avatar} />
+          <Avatar size={64} src={avatar} />
         </div>
       )
     },
     {
-      title: 'Full name',
-      render: item => (
-        <div>
-          {item.first_name} {item.last_name}
-        </div>
-      )
+      title: 'First Name',
+      dataIndex: 'first_name'
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'last_name'
     },
     {
       title: 'Email',
@@ -47,8 +48,9 @@ export class Users extends PureComponent<Props, State> {
     },
     {
       title: '',
+      dataIndex: 'id',
       className: 'text-right',
-      render: (row: Object) => (
+      render: (_, row: Object) => (
         <Button
           size="large"
           type="primary"
@@ -80,7 +82,7 @@ export class Users extends PureComponent<Props, State> {
 
     const usersList = get(users, 'data.data', []);
 
-    if (users.fetching) return <Spin />;
+    if (users.fetching === null || users.fetching) return <Spin />;
 
     return (
       <div>
