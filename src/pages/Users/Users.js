@@ -79,7 +79,6 @@ export class Users extends PureComponent<Props, State> {
     const { users } = this.props;
 
     const usersList = get(users, 'data.data', []);
-    const pagination = get(users, 'pagination', {});
 
     if (users.fetching) return <Spin />;
 
@@ -92,10 +91,6 @@ export class Users extends PureComponent<Props, State> {
           columns={this.columns}
           rowKey="id"
           onChange={this.handlePaginate}
-          pagination={{
-            current: pagination.current_page,
-            total: pagination.total_count
-          }}
         />
       </div>
     );

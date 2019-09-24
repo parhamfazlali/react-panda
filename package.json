@@ -21,8 +21,13 @@
     "dev": "better-npm-run dev",
     "prod": "better-npm-run prod",
     "build": "yarn clean:build && better-npm-run build",
+    "test": "better-npm-run test",
+    "test:watch": "yarn test --watch",
+    "test:update-snapshot": "yarn test -u",
     "clean": "npm-run-all --parallel clean:*",
-    "clean:build": "better-npm-run clean:build"
+    "clean:build": "better-npm-run clean:build",
+    "clean:test": "better-npm-run clean:test",
+    "coveralls": "yarn clean:test && better-npm-run coveralls"
   },
   "betterScripts": {
     "dev": {
@@ -45,8 +50,20 @@
         "NODE_ENV": "production"
       }
     },
+    "test": {
+      "command": "jest --coverage",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
     "clean:build": {
       "command": "rimraf ./public/build"
+    },
+    "clean:test": {
+      "command": "rimraf ./coverage"
+    },
+    "coveralls": {
+      "command": "cat ./coverage/lcov.info | coveralls"
     }
   },
   "nodemonConfig": {
