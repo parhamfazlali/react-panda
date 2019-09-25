@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 
-import UsersDetails from '../UsersDetails';
+import UsersDetails from '../Widgets/UsersDetails';
 
 describe('<UsersDetails />', () => {
   it('renders', () => {
