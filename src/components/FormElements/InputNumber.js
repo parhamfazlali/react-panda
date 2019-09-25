@@ -49,8 +49,10 @@ export default class InputNumberSpinner extends PureComponent<Props> {
           readOnly ? ' readOnly-field' : ''
         }`}
       >
-        <InputNumber {...input} {...rest} onChange={this.handleChange} />
         {label && <span className="labelText">{label}</span>}
+
+        <InputNumber {...input} {...rest} onChange={this.handleChange} />
+
         {touched && error && (
           <div className="text-danger">
             <span className="text-danger--text">{error}</span>

@@ -1,11 +1,14 @@
 // @flow
 import React, { PureComponent } from 'react';
 import type { FormProps } from 'redux-form';
+import { Input } from 'antd';
 
 type Props = {
   className: string,
   label: string
 } & FormProps;
+
+const { TextArea } = Input;
 
 export default class InputTextArea extends PureComponent<Props> {
   handleBlur = (event: Object) => {
@@ -44,7 +47,7 @@ export default class InputTextArea extends PureComponent<Props> {
         <label htmlFor={input.name}>
           {label && <span className="labelText">{label}</span>}
 
-          <textarea
+          <TextArea
             {...input}
             {...reset}
             id={input.name}

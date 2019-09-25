@@ -14,12 +14,29 @@ export default styled.div`
     margin-bottom: 30px;
 
     .labelText {
-      font-size: 14px;
+      font-size: 15px;
       color: #000;
+      display: block;
+      margin-bottom: 3px;
+      text-transform: uppercase;
     }
 
-    .ant-input {
-      height: 50px;
+    .ant-select,
+    .ant-calendar-picker {
+      width: 100%;
+    }
+
+    .checkbox--label--text {
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .checkbox--square {
+      display: inline-block;
+      margin-left: 5px;
     }
   }
 
