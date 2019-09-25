@@ -66,6 +66,39 @@
       "command": "cat ./coverage/lcov.info | coveralls"
     }
   },
+  "jest": {
+    "setupFiles": [
+      "raf/polyfill"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/jest/setup.js"
+    ],
+    "globals": {
+      "__DEV__": true
+    },
+    "collectCoverageFrom": [
+      "src/app/**/*.js",
+      "src/pages/**/*.js",
+      "src/components/**/*.js",
+      "src/actions/**/*.js",
+      "src/reducers/**/*.js",
+      "!src/actions/index.js",
+      "!src/components/index.js",
+      "!src/pages/index.js",
+      "!src/pages/*/index.js",
+      "!src/pages/*/*.style.js",
+      "!src/reducers/index.js",
+      "**/*.style.{js,jsx}"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(css|scss|sass|less)$": "<rootDir>/config/jest/styleMock.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/assetMock.js"
+    },
+    "moduleDirectories" : [
+      "node_modules",
+      "src"
+    ]
+  },
   "nodemonConfig": {
     "watch": [
       "src/server.js",
@@ -117,6 +150,7 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^2.1.0",
     "serve-favicon": "^2.5.0",

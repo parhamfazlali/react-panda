@@ -10,7 +10,11 @@ import { loadAll as loadAllUsers } from 'actions/users.action';
 import { UsersDetails } from 'components';
 import StyleWrapper from './users.style';
 
-type Props = { users: Object, loadAllUsers: () => void };
+type Props = {
+  users: Object,
+  loadAllUsers: () => void,
+  history: Object
+};
 
 type State = {
   visibleModal: boolean,
@@ -27,19 +31,20 @@ export class Users extends PureComponent<Props, State> {
   columns = [
     {
       title: '',
-      render: item => (
+      dataIndex: 'avatar',
+      render: (avatar: string) => (
         <div>
-          <Avatar size={64} src={item.avatar} />
+          <Avatar size={64} src={avatar} />
         </div>
       )
     },
     {
-      title: 'Full name',
-      render: item => (
-        <div>
-          {item.first_name} {item.last_name}
-        </div>
-      )
+      title: 'First Name',
+      dataIndex: 'first_name'
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'last_name'
     },
     {
       title: 'Email',
@@ -47,8 +52,9 @@ export class Users extends PureComponent<Props, State> {
     },
     {
       title: '',
+      dataIndex: 'id',
       className: 'text-right',
-      render: (row: Object) => (
+      render: (_, row: Object) => (
         <Button
           size="large"
           type="primary"
@@ -75,16 +81,33 @@ export class Users extends PureComponent<Props, State> {
     this.setState({ visibleModal: false });
   };
 
+  hendleRedirect = () => {
+    const { history } = this.props;
+    history.push('/new-user');
+  };
+
   renderUserList = () => {
     const { users } = this.props;
 
     const usersList = get(users, 'data.data', []);
 
-    if (users.fetching) return <Spin />;
+    if (users.fetching === null || users.fetching) return <Spin />;
 
     return (
       <div>
         <h4>Users List</h4>
+
+        <div className="add-user">
+          <Button
+            size="large"
+            type="primary"
+            shape="round"
+            icon="plus"
+            onClick={this.hendleRedirect}
+          >
+            Add new user
+          </Button>
+        </div>
 
         <Table
           dataSource={usersList}
