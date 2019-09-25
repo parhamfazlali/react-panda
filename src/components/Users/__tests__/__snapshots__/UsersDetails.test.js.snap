@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UsersDetails /> renders 1`] = `
+<div
+  className="usersDetailsstyle___default-nt0zrw-0 fAzFbl"
+>
+  <div
+    className="user-avatar"
+  >
+    <span
+      className="ant-avatar ant-avatar-circle ant-avatar-image"
+      style={
+        Object {
+          "fontSize": 18,
+          "height": 120,
+          "lineHeight": "120px",
+          "width": 120,
+        }
+      }
+    >
+      <img
+        onError={[Function]}
+        src="https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
+      />
+    </span>
+  </div>
+  <div
+    className="user-fullname"
+  >
+    George
+     
+    Bluth
+  </div>
+  <div
+    className="user-email"
+  >
+    george.bluth@reqres.in
+  </div>
+</div>
+`;

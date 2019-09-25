@@ -16,3 +16,12 @@ export function load(id: string) {
     url: `/users/${id}`
   };
 }
+
+export function create(data: Object) {
+  return {
+    types: ActionTypes.CREATE_USER,
+    method: 'post',
+    url: '/users',
+    data
+  };
+}
