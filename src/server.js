@@ -76,7 +76,11 @@ app.get('*', (req, res) => {
       if (route.loadData) {
         return Promise.all(
           route
-            .loadData({ params: match.params, getState: store.getState })
+            .loadData({
+              params: match.params,
+              query: req.query,
+              getState: store.getState
+            })
             .map(item => store.dispatch(item))
         );
       }
