@@ -13,5 +13,5 @@ export default flattener([
    * u: UPDATE
    * d: DELETE
    */
-  promise('user', 'la') // WILL CREATE LOAD_USER + LOAD_ALL_USERS
+  promise('user', 'cla') // WILL CREATE ==> CREATE_USER + LOAD_USER + LOAD_ALL_USERS
 ]);

@@ -2,7 +2,7 @@
 
 import App from './app';
 import { loadAll as loadAllUsers } from './actions/users.action';
-import { asyncUsers, NotFound } from './pages';
+import { asyncUsers, asyncUsersNew, NotFound } from './pages';
 
 export default [
   {
@@ -13,6 +13,11 @@ export default [
         exact: true,
         component: asyncUsers,
         loadData: () => [loadAllUsers()]
+      },
+      {
+        path: '/new-user',
+        exact: true,
+        component: asyncUsersNew
       },
       {
         component: NotFound

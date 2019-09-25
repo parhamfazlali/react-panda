@@ -4,13 +4,18 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { get } from 'lodash';
-import { Avatar, Table, Button, Spin, Modal, Icon } from 'antd';
+import { Avatar, Table, Button, Spin, Modal, Icon, Tabs } from 'antd';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
 import { UsersDetails } from 'components';
 import StyleWrapper from './users.style';
 
-type Props = { users: Object, loadAllUsers: () => void };
+type Props = {
+  history: Object,
+  query: Object,
+  users: Object,
+  loadAllUsers: () => void
+};
 
 type State = {
   visibleModal: boolean,
@@ -77,6 +82,11 @@ export class Users extends PureComponent<Props, State> {
     this.setState({ visibleModal: false });
   };
 
+  hendleRedirect = () => {
+    const { history } = this.props;
+    history.push('/new-user');
+  };
+
   renderUserList = () => {
     const { users } = this.props;
 
@@ -86,7 +96,17 @@ export class Users extends PureComponent<Props, State> {
 
     return (
       <div>
-        <h4>Users List</h4>
+        <div className="add-user">
+          <Button
+            size="large"
+            type="primary"
+            shape="round"
+            icon="plus"
+            onClick={this.hendleRedirect}
+          >
+            Add new user
+          </Button>
+        </div>
 
         <Table
           dataSource={usersList}
@@ -99,12 +119,24 @@ export class Users extends PureComponent<Props, State> {
   };
 
   render() {
+    const { users } = this.props;
+
     const { visibleModal, userId } = this.state;
 
     return (
       <StyleWrapper>
         <Helmet title="Users" />
-        {this.renderUserList()}
+
+        <div>
+          <Tabs>
+            <Tabs.TabPane disabled={users.fetching} tab="Users List" key="list">
+              {this.renderUserList()}
+            </Tabs.TabPane>
+            <Tabs.TabPane disabled={users.fetching} tab="Users Card" key="card">
+              Test
+            </Tabs.TabPane>
+          </Tabs>
+        </div>
 
         <Modal
           className="c--modal"
