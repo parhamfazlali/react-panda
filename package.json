@@ -86,15 +86,14 @@
       "!src/components/index.js",
       "!src/pages/index.js",
       "!src/pages/*/index.js",
-      "!src/pages/*/*.style.js",
       "!src/reducers/index.js",
-      "**/*.style.{js,jsx}"
+      "!**/*.style.{js,jsx}"
     ],
     "moduleNameMapper": {
       ".*\\.(css|scss|sass|less)$": "<rootDir>/config/jest/styleMock.js",
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/assetMock.js"
     },
-    "moduleDirectories" : [
+    "moduleDirectories": [
       "node_modules",
       "src"
     ]
@@ -140,6 +139,7 @@
     "path": "^0.12.7",
     "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",
+    "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-dev-utils": "^9.0.4",
     "react-dom": "npm:@hot-loader/react-dom",

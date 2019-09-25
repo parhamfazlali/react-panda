@@ -14,25 +14,6 @@ type Props = {
 } & FormProps;
 
 export default class InputText extends PureComponent<Props> {
-  handleBlur = (event: Object) => {
-    const { input, type, beforeChange, afterChange } = this.props;
-    input.onBlur();
-    const value =
-      type === 'password' ? event.target.value : event.target.value.trim();
-    if (!beforeChange || beforeChange(event.target.value)) {
-      input.onChange(value);
-      if (afterChange) afterChange(value);
-    }
-  };
-
-  handleChange = (event: Object) => {
-    const { input, beforeChange, afterChange } = this.props;
-    if (!beforeChange || beforeChange(event.target.value)) {
-      input.onChange(event);
-      if (afterChange) afterChange(event.target.value);
-    }
-  };
-
   render() {
     const {
       input,
@@ -43,8 +24,6 @@ export default class InputText extends PureComponent<Props> {
       type,
       search = false,
       disabled = false,
-      beforeChange,
-      afterChange,
       ...rest
     } = this.props;
 
@@ -68,8 +47,6 @@ export default class InputText extends PureComponent<Props> {
             disabled={disabled}
             placeholder={placeholder}
             type={type}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
           />
         </label>
         {touched && error && (

@@ -19,13 +19,12 @@ class UsersCard extends PureComponent<Props, State> {
     return (
       <StyleWrapper>
         {user.map(item => (
-          <div
-            key={item.id}
-            className="card--item"
-            role="presentation"
-            onClick={() => onClick(item.id)}
-          >
-            <div className="item--innerbox">
+          <div key={item.id} className="card--item">
+            <div
+              className="item--innerbox"
+              role="presentation"
+              onClick={() => onClick(item.id)}
+            >
               <div className="user-avatar">
                 <Avatar size={120} src={item.avatar} />
               </div>

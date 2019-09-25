@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { get } from 'lodash';
-import { Avatar, Table, Button, Spin, Modal, Icon, Tabs } from 'antd';
+import { Avatar, Table, Button, Spin, Modal, Icon } from 'antd';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
 import { UsersCard, UsersDetails } from 'components';
@@ -131,17 +131,9 @@ export class Users extends PureComponent<Props, State> {
           </Button>
         </div>
 
-        <div>
-          <Tabs>
-            <Tabs.TabPane disabled={users.fetching} tab="Users List" key="list">
-              {this.renderUserList()}
-            </Tabs.TabPane>
+        <div>{this.renderUserList()}</div>
 
-            <Tabs.TabPane disabled={users.fetching} tab="Users Card" key="card">
-              <UsersCard user={usersList} onClick={this.showDetailsPage} />
-            </Tabs.TabPane>
-          </Tabs>
-        </div>
+        <UsersCard user={usersList} onClick={this.showDetailsPage} />
 
         <Modal
           className="c--modal"

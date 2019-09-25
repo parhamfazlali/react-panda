@@ -2,7 +2,7 @@
 
 exports[`<UsersDetails /> renders 1`] = `
 <div
-  className="usersDetailsstyle___default-nt0zrw-0 fAzFbl"
+  className="usersDetailsstyle___default-sc-6wapd6-0 cICFtm"
 >
   <div
     className="user-avatar"

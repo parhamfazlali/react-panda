@@ -21,6 +21,12 @@ export default styled.div`
         font-size: 16px;
         font-weight: bold;
         margin: 10px 0;
+        color: #000;
+      }
+
+      .user-email {
+        color: #000;
+        font-size: 14px;
       }
     }
   }

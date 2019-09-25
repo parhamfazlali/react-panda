@@ -27,11 +27,15 @@ describe('<App />', () => {
       ]
     };
 
+    const fakeLocation = {
+      pathname: '/'
+    };
+
     const tree = renderer
       .create(
         <Provider store={fakeStore}>
           <MemoryRouter>
-            <App route={fakeRoute} />
+            <App route={fakeRoute} location={fakeLocation} />
           </MemoryRouter>
         </Provider>
       )
