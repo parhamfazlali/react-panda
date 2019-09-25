@@ -3,8 +3,6 @@ import React, { PureComponent } from 'react';
 import { Select } from 'antd';
 import type { FormProps } from 'redux-form';
 
-const { Option } = Select;
-
 type Props = {
   placeholder: String,
   options: Array<Object>,
@@ -64,12 +62,12 @@ export default class InputSelect extends PureComponent<Props> {
         >
           {options &&
             options.map(option => (
-              <Option
+              <Select.Option
                 disabled={disabled}
                 key={option.key ? String(option.key) : option.id}
               >
                 {option.label ? option.label : option.name}
-              </Option>
+              </Select.Option>
             ))}
         </Select>
 

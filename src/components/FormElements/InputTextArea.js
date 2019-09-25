@@ -8,8 +8,6 @@ type Props = {
   label: string
 } & FormProps;
 
-const { TextArea } = Input;
-
 export default class InputTextArea extends PureComponent<Props> {
   handleBlur = (event: Object) => {
     const { input, afterChange } = this.props;
@@ -47,7 +45,7 @@ export default class InputTextArea extends PureComponent<Props> {
         <label htmlFor={input.name}>
           {label && <span className="labelText">{label}</span>}
 
-          <TextArea
+          <Input.TextArea
             {...input}
             {...reset}
             id={input.name}
