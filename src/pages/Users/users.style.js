@@ -30,4 +30,10 @@ export default styled.div`
     text-transform: uppercase;
     background-color: #fff;
   }
+
+  .add-user {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
 `;

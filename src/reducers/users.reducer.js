@@ -3,7 +3,12 @@
 import ActionTypes from '../actionTypes';
 
 const initialState = {
-  fetching: null
+  all: {
+    fetching: null
+  },
+  detail: {
+    fetching: null
+  }
 };
 
 export default function(state: Object = initialState, action: Object = {}) {
@@ -14,19 +19,53 @@ export default function(state: Object = initialState, action: Object = {}) {
     case ActionTypes.LOAD_ALL_USERS:
       return {
         ...state,
-        fetching: true
+        all: {
+          fetching: true
+        }
       };
     case ActionTypes.LOAD_ALL_USERS_SUCCESS:
       return {
         ...state,
-        fetching: false,
-        data: action.result
+        all: {
+          fetching: false,
+          data: action.result
+        }
       };
     case ActionTypes.LOAD_ALL_USERS_FAILURE:
       return {
         ...state,
-        fetching: false,
-        error: action.error
+        all: {
+          fetching: false,
+          error: action.error
+        }
+      };
+
+    /**
+     * LOAD_USER
+     */
+
+    case ActionTypes.LOAD_USER:
+      return {
+        ...state,
+        detail: {
+          fetching: true
+        }
+      };
+    case ActionTypes.LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        detail: {
+          fetching: false,
+          data: action.result
+        }
+      };
+    case ActionTypes.LOAD_USER_FAILURE:
+      return {
+        ...state,
+        detail: {
+          fetching: false,
+          error: action.error
+        }
       };
 
     default:

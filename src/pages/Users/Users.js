@@ -7,12 +7,11 @@ import { get } from 'lodash';
 import { Avatar, Table, Button, Spin, Modal, Icon, Tabs } from 'antd';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
-import { UsersDetails } from 'components';
+import { UsersCard, UsersDetails } from 'components';
 import StyleWrapper from './users.style';
 
 type Props = {
   history: Object,
-  query: Object,
   users: Object,
   loadAllUsers: () => void
 };
@@ -60,7 +59,7 @@ export class Users extends PureComponent<Props, State> {
           size="large"
           type="primary"
           shape="round"
-          onClick={() => this.showDetails(row)}
+          onClick={() => this.showDetailsModal(row)}
         >
           Details
           <Icon type="right" />
@@ -74,40 +73,32 @@ export class Users extends PureComponent<Props, State> {
     loadAllPromise();
   }
 
-  showDetails = userId => {
+  showDetailsModal = userId => {
     this.setState({ userId, visibleModal: true });
   };
 
-  hideDetails = () => {
+  hideDetailsModal = () => {
     this.setState({ visibleModal: false });
   };
 
   hendleRedirect = () => {
     const { history } = this.props;
-    history.push('/new-user');
+    history.push('/users/new-user');
+  };
+
+  showDetailsPage = (id: Object) => {
+    const { history } = this.props;
+    history.push(`/users/${id}`);
   };
 
   renderUserList = () => {
     const { users } = this.props;
-
     const usersList = get(users, 'data.data', []);
 
     if (users.fetching === null || users.fetching) return <Spin />;
 
     return (
       <div>
-        <div className="add-user">
-          <Button
-            size="large"
-            type="primary"
-            shape="round"
-            icon="plus"
-            onClick={this.hendleRedirect}
-          >
-            Add new user
-          </Button>
-        </div>
-
         <Table
           dataSource={usersList}
           columns={this.columns}
@@ -120,20 +111,34 @@ export class Users extends PureComponent<Props, State> {
 
   render() {
     const { users } = this.props;
-
     const { visibleModal, userId } = this.state;
+
+    const usersList = get(users, 'data.data', []);
 
     return (
       <StyleWrapper>
         <Helmet title="Users" />
+
+        <div className="add-user">
+          <Button
+            size="large"
+            type="primary"
+            shape="round"
+            icon="user-add"
+            onClick={this.hendleRedirect}
+          >
+            Add new user
+          </Button>
+        </div>
 
         <div>
           <Tabs>
             <Tabs.TabPane disabled={users.fetching} tab="Users List" key="list">
               {this.renderUserList()}
             </Tabs.TabPane>
+
             <Tabs.TabPane disabled={users.fetching} tab="Users Card" key="card">
-              Test
+              <UsersCard user={usersList} onClick={this.showDetailsPage} />
             </Tabs.TabPane>
           </Tabs>
         </div>
@@ -143,7 +148,7 @@ export class Users extends PureComponent<Props, State> {
           title=""
           centered
           visible={visibleModal}
-          onCancel={this.hideDetails}
+          onCancel={this.hideDetailsModal}
           footer={null}
         >
           <UsersDetails user={userId} />
@@ -153,7 +158,7 @@ export class Users extends PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = ({ users }: Object) => ({ users });
+const mapStateToProps = ({ users }: Object) => ({ users: users.all });
 
 const mapDispatchToProps = { loadAllUsers };
 
