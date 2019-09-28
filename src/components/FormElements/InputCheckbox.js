@@ -2,6 +2,8 @@
 import React, { PureComponent } from 'react';
 import type { FormProps } from 'redux-form';
 
+import StyleWrapper from './input.style';
+
 type Props = {
   activeLabel: string,
   afterChange: Function,
@@ -36,31 +38,33 @@ export default class InputCheckbox extends PureComponent<Props> {
     } = this.props;
 
     return (
-      <div className={`c-input checkbox ${className || ''}`}>
-        <label className="checkbox--label" htmlFor={input.name}>
-          <input
-            className="checkbox--input"
-            {...input}
-            id={id || input.name}
-            type="checkbox"
-            checked={checked === undefined ? input.value : checked}
-            onChange={this.handleChange}
-            {...rest}
-          />
+      <StyleWrapper>
+        <div className={`c-input checkbox ${className || ''}`}>
+          <label className="checkbox--label" htmlFor={input.name}>
+            <input
+              className="checkbox--input"
+              {...input}
+              id={id || input.name}
+              type="checkbox"
+              checked={checked === undefined ? input.value : checked}
+              onChange={this.handleChange}
+              {...rest}
+            />
 
-          <div className="checkbox--square checkbox--check-section checkbox--select" />
+            <div className="checkbox--square checkbox--check-section checkbox--select" />
 
-          <span className="checkbox--label--text">
-            {activeLabel && input.value ? activeLabel : label}
-          </span>
-        </label>
+            <span className="checkbox--label--text">
+              {activeLabel && input.value ? activeLabel : label}
+            </span>
+          </label>
 
-        {error && touched && (
-          <div className="text-danger">
-            <span className="text-danger--text">{error}</span>
-          </div>
-        )}
-      </div>
+          {error && touched && (
+            <div className="text-danger">
+              <span className="text-danger--text">{error}</span>
+            </div>
+          )}
+        </div>
+      </StyleWrapper>
     );
   }
 }

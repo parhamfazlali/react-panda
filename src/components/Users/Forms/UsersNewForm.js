@@ -18,6 +18,7 @@ import {
   InputTextArea,
   SubmitButton
 } from 'components/FormElements';
+import { validation } from 'utils';
 import StyleWrapper from './usersNewForm.style';
 
 type Props = {
@@ -28,6 +29,12 @@ type Props = {
 const USERS_NEW_FORM = 'usersNewForm';
 
 class UsersNewForm extends PureComponent<Props> {
+  validate = {
+    isEmail: validation.isEmail(),
+    isFill: validation.isFill(),
+    isName: validation.isName()
+  };
+
   genderOptions = [
     { title: 'Man', value: 'man' },
     { title: 'Woman', value: 'woman' }
@@ -49,6 +56,7 @@ class UsersNewForm extends PureComponent<Props> {
             size="large"
             component={InputText}
             label="First name"
+            validate={[this.validate.isFill, this.validate.isName]}
           />
 
           <Field
@@ -56,6 +64,15 @@ class UsersNewForm extends PureComponent<Props> {
             size="large"
             component={InputText}
             label="Last name"
+            validate={[this.validate.isFill]}
+          />
+
+          <Field
+            name="email"
+            size="large"
+            component={InputText}
+            label="Email"
+            validate={[this.validate.isFill, this.validate.isEmail]}
           />
 
           <Field
@@ -64,6 +81,7 @@ class UsersNewForm extends PureComponent<Props> {
             component={InputRadio}
             options={this.genderOptions}
             label="Gender"
+            validate={[this.validate.isFill]}
           />
 
           <Field
@@ -72,6 +90,7 @@ class UsersNewForm extends PureComponent<Props> {
             label="Job"
             component={InputSelect}
             options={this.jobOptions}
+            validate={[this.validate.isFill]}
           />
 
           <Field
@@ -79,6 +98,7 @@ class UsersNewForm extends PureComponent<Props> {
             size="large"
             label="Childs"
             component={InputNumber}
+            validate={[this.validate.isFill]}
           />
 
           <Field
@@ -86,6 +106,7 @@ class UsersNewForm extends PureComponent<Props> {
             size="large"
             label="Birthday"
             component={InputDate}
+            validate={[this.validate.isFill]}
           />
 
           <Field name="bio" label="Bio" component={InputTextArea} />
@@ -95,6 +116,7 @@ class UsersNewForm extends PureComponent<Props> {
             size="large"
             label="I agree the terms and conditions"
             component={InputCheckbox}
+            validate={[this.validate.isFill]}
           />
 
           <SubmitButton

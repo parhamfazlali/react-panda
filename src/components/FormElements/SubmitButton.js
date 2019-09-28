@@ -2,6 +2,8 @@
 import React, { PureComponent } from 'react';
 import { Button } from 'antd';
 
+import StyleWrapper from './input.style';
+
 type Props = {
   id: string,
   label: string,
@@ -25,16 +27,18 @@ export default class SubmitButton extends PureComponent<Props> {
       ...rest
     } = this.props;
     return (
-      <Button
-        id={id || 'submitBtn'}
-        htmlType={htmlType}
-        onClick={onSubmit}
-        loading={submitting}
-        className={`c-button ${className}`}
-        {...rest}
-      >
-        <span className="text">{label}</span>
-      </Button>
+      <StyleWrapper>
+        <Button
+          id={id || 'submitBtn'}
+          htmlType={htmlType}
+          onClick={onSubmit}
+          loading={submitting}
+          className={`c-button ${className}`}
+          {...rest}
+        >
+          <span className="text">{label}</span>
+        </Button>
+      </StyleWrapper>
     );
   }
 }
