@@ -59,15 +59,18 @@ export class UsersNew extends PureComponent<Props, State> {
     return (
       <StyleWrapper>
         <Helmet title="New User" />
-        <Button
-          size="large"
-          type="primary"
-          shape="round"
-          icon="left"
-          onClick={this.handleBack}
-        >
-          Back to list
-        </Button>
+
+        <div className="back-to-list">
+          <Button
+            size="large"
+            type="primary"
+            shape="round"
+            icon="left"
+            onClick={this.handleBack}
+          >
+            Back to list
+          </Button>
+        </div>
 
         <UsersNewForm onSubmit={this.handleCreateUser} />
       </StyleWrapper>
