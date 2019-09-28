@@ -2,7 +2,14 @@
 
 import ErrorBoundary from './ErrorBoundary';
 import Loading from './Loading';
-import { UsersNewForm, UsersDetails } from './Users';
+import { UsersNewForm, UsersCard, UsersDetails } from './Users';
 import * as FormElements from './FormElements';
 
-export { ErrorBoundary, Loading, UsersNewForm, UsersDetails, FormElements };
+export {
+  ErrorBoundary,
+  Loading,
+  UsersNewForm,
+  UsersCard,
+  UsersDetails,
+  FormElements
+};

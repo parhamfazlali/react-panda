@@ -15,5 +15,12 @@ import InternalServerError from './500';
  */
 import asyncUsers from './Users';
 import asyncUsersNew from './Users/UsersNew';
+import asyncUsersDetails from './Users/UsersDetails';
 
-export { NotFound, InternalServerError, asyncUsers, asyncUsersNew };
+export {
+  NotFound,
+  InternalServerError,
+  asyncUsers,
+  asyncUsersNew,
+  asyncUsersDetails
+};
