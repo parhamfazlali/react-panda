@@ -1,36 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<InputTextArea /> Test blur method 1`] = `
-<div
-  className="c-input textarea undefined "
->
-  <label
-    htmlFor="field"
-  >
-    <span
-      className="labelText"
-    >
-      field
-    </span>
-    <textarea
-      className="ant-input roundInput textareaInput"
-      id="field"
-      name="field"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="placeholder"
-      rows={5}
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    />
-  </label>
-</div>
-`;
-
 exports[`<InputTextArea /> renders  without error 1`] = `
 <div
   className="c-input textarea undefined "
@@ -57,6 +26,7 @@ exports[`<InputTextArea /> renders  without error 1`] = `
           "width": "100%",
         }
       }
+      value=" Sample Text "
     />
   </label>
 </div>
@@ -88,6 +58,7 @@ exports[`<InputTextArea /> renders disabled 1`] = `
           "width": "100%",
         }
       }
+      value=" Sample Text "
     />
   </label>
 </div>
@@ -118,6 +89,7 @@ exports[`<InputTextArea /> renders error, and touched 1`] = `
           "width": "100%",
         }
       }
+      value=" Sample Text "
     />
   </label>
 </div>
@@ -148,6 +120,7 @@ exports[`<InputTextArea /> renders error, not touched 1`] = `
           "width": "100%",
         }
       }
+      value=" Sample Text "
     />
   </label>
 </div>
