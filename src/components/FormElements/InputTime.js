@@ -4,6 +4,8 @@ import { TimePicker } from 'antd';
 import moment from 'moment';
 import type { FormProps } from 'redux-form';
 
+import StyleWrapper from './input.style';
+
 type Props = {
   label: string,
   timeFormat: string,
@@ -32,18 +34,20 @@ export default class InputTime extends PureComponent<Props> {
     const value = input.value ? moment(input.value, timeFormat) : null;
 
     return (
-      <div className="c-input datepicker">
-        {label && <span className="labelText"> {label} </span>}
-        <TimePicker
-          {...input}
-          {...rest}
-          onChange={this.onChange}
-          value={value}
-          format={timeFormat}
-          getPopupContainer={trigger => trigger.parentNode}
-        />
-        {touched && error && <span className="text-danger">{error}</span>}
-      </div>
+      <StyleWrapper>
+        <div className="c-input datepicker">
+          {label && <span className="labelText"> {label} </span>}
+          <TimePicker
+            {...input}
+            {...rest}
+            onChange={this.onChange}
+            value={value}
+            format={timeFormat}
+            getPopupContainer={trigger => trigger.parentNode}
+          />
+          {touched && error && <span className="text-danger">{error}</span>}
+        </div>
+      </StyleWrapper>
     );
   }
 }
