@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputTextArea /> renders  without error 1`] = `
+<div
+  className="c-input textarea undefined "
+>
+  <label
+    htmlFor="field"
+  >
+    <span
+      className="labelText"
+    >
+      field
+    </span>
+    <textarea
+      className="ant-input roundInput textareaInput"
+      id="field"
+      name="field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      rows={5}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </label>
+</div>
+`;
+
+exports[`<InputTextArea /> renders disabled 1`] = `
+<div
+  className="c-input textarea undefined "
+>
+  <label
+    htmlFor="field"
+  >
+    <span
+      className="labelText"
+    >
+      field
+    </span>
+    <textarea
+      className="ant-input roundInput textareaInput ant-input-disabled"
+      disabled={true}
+      id="field"
+      name="field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      rows={5}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </label>
+</div>
+`;
+
+exports[`<InputTextArea /> renders error, and touched 1`] = `
+<div
+  className="c-input textarea undefined "
+>
+  <label
+    htmlFor="field"
+  >
+    <span
+      className="labelText"
+    >
+      field
+    </span>
+    <textarea
+      className="ant-input roundInput textareaInput"
+      id="field"
+      name="field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      rows={5}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </label>
+</div>
+`;
+
+exports[`<InputTextArea /> renders error, not touched 1`] = `
+<div
+  className="c-input textarea undefined "
+>
+  <label
+    htmlFor="field"
+  >
+    <span
+      className="labelText"
+    >
+      field
+    </span>
+    <textarea
+      className="ant-input roundInput textareaInput"
+      id="field"
+      name="field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      rows={5}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </label>
+</div>
+`;
+
+exports[`<InputTextArea /> renders search 1`] = `
+<div
+  className="c-input textarea undefined "
+>
+  <label
+    htmlFor="field"
+  >
+    <span
+      className="labelText"
+    >
+      field
+    </span>
+    <textarea
+      className="ant-input roundInput textareaInput"
+      id="field"
+      name="field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      rows={5}
+      search={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </label>
+</div>
+`;

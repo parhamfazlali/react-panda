@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import { Input } from 'antd';
 import type { FormProps } from 'redux-form';
 
+import StyleWrapper from './input.style';
+
 type Props = {
   placeholder: string,
   disabled: boolean,
@@ -30,31 +32,36 @@ export default class InputText extends PureComponent<Props> {
     const InputComponent = search ? Input.Search : Input;
 
     return (
-      <div
-        className={`c-input text ${className} ${
-          touched && error ? ' hasError' : ''
-        }`}
-      >
-        <label className={`${disabled ? 'disabled' : ''}`} htmlFor={input.name}>
-          {label && <span className="labelText">{label}</span>}
+      <StyleWrapper>
+        <div
+          className={`c-input text ${className} ${
+            touched && error ? 'hasError' : ''
+          }`}
+        >
+          <label
+            className={`${disabled ? 'disabled' : ''}`}
+            htmlFor={input.name}
+          >
+            {label && <span className="labelText">{label}</span>}
 
-          <InputComponent
-            {...input}
-            {...rest}
-            autoComplete="off"
-            id={input.name}
-            className={`roundInput${disabled ? ' not-allowed' : ''}`}
-            disabled={disabled}
-            placeholder={placeholder}
-            type={type}
-          />
-        </label>
-        {touched && error && (
-          <div className="text-danger">
-            <span className="text-danger--text">{error}</span>
-          </div>
-        )}
-      </div>
+            <InputComponent
+              {...input}
+              {...rest}
+              autoComplete="off"
+              id={input.name}
+              className={`roundInput${disabled ? ' not-allowed' : ''}`}
+              disabled={disabled}
+              placeholder={placeholder}
+              type={type}
+            />
+          </label>
+          {touched && error && (
+            <div className="text-danger">
+              <span className="text-danger--text">{error}</span>
+            </div>
+          )}
+        </div>
+      </StyleWrapper>
     );
   }
 }

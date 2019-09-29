@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import type { FormProps } from 'redux-form';
 import { InputNumber } from 'antd';
 
+import StyleWrapper from './input.style';
+
 type Props = {
   disabled: boolean,
   className: string,
@@ -44,21 +46,23 @@ export default class InputNumberSpinner extends PureComponent<Props> {
     } = this.props;
 
     return (
-      <div
-        className={`c-input number${className} ${
-          readOnly ? ' readOnly-field' : ''
-        }`}
-      >
-        {label && <span className="labelText">{label}</span>}
+      <StyleWrapper>
+        <div
+          className={`c-input number${className} ${
+            readOnly ? ' readOnly-field' : ''
+          }`}
+        >
+          {label && <span className="labelText">{label}</span>}
 
-        <InputNumber {...input} {...rest} onChange={this.handleChange} />
+          <InputNumber {...input} {...rest} onChange={this.handleChange} />
 
-        {touched && error && (
-          <div className="text-danger">
-            <span className="text-danger--text">{error}</span>
-          </div>
-        )}
-      </div>
+          {touched && error && (
+            <div className="text-danger">
+              <span className="text-danger--text">{error}</span>
+            </div>
+          )}
+        </div>
+      </StyleWrapper>
     );
   }
 }
