@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  width: 70%;
+  width: 72%;
   margin: auto;
 
   .card--item {
@@ -16,6 +16,8 @@ export default styled.div`
       box-shadow: rgba(0, 0, 0, 0.1) 0 0 50px 0;
       border-radius: 10px;
       overflow: hidden;
+      cursor: pointer;
+      transition: all ease 0.2s;
 
       .user-fullname {
         font-size: 16px;
@@ -27,6 +29,10 @@ export default styled.div`
       .user-email {
         color: #000;
         font-size: 14px;
+      }
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.17) 0 0 50px 0;
       }
     }
   }
