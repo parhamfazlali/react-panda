@@ -1,8 +1,16 @@
 /* @flow */
 
 import App from './app';
-import { loadAll as loadAllUsers } from './actions/users.action';
-import { asyncUsers, asyncUsersNew, NotFound } from './pages';
+import {
+  load as loadUser,
+  loadAll as loadAllUsers
+} from './actions/users.action';
+import {
+  asyncUsers,
+  asyncUsersNew,
+  asyncUsersDetails,
+  NotFound
+} from './pages';
 
 export default [
   {
@@ -15,9 +23,15 @@ export default [
         loadData: () => [loadAllUsers()]
       },
       {
-        path: '/new-user',
+        path: '/users/new-user',
         exact: true,
         component: asyncUsersNew
+      },
+      {
+        path: '/users/:id',
+        exact: true,
+        component: asyncUsersDetails,
+        loadData: ({ params }: Object) => [loadUser(params.id)]
       },
       {
         component: NotFound
