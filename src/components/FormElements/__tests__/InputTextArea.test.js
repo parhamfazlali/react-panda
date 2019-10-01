@@ -1,102 +1,64 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { reducer as formReducer } from 'redux-form';
 import { get } from 'lodash';
-import InputTextArea from '../InputTextArea';
+import SampleForm from '../SampleForm';
 
 global.Input = require('antd').Input;
 
-describe('<InputTextArea />', () => {
-  const tree = props =>
-    renderer
-      .create(
-        <MemoryRouter>
-          <InputTextArea
-            {...props}
-            input={{ name: 'field', value: ' Sample Text ' }}
-            meta={{ touched: false, error: null }}
-          />
-        </MemoryRouter>
-      )
-      .toJSON();
+describe('<SampleForm /> on InputTextArea', () => {
+  let wrapper;
+  let store;
 
-  const component = renderer.create(
-    <InputTextArea
-      input={{
-        onBlur: jest.fn(),
-        value: ' Sample Text '
-      }}
-      meta={{ touched: false, error: null }}
-    />
-  );
-
-  const instant = component.getInstance();
-
-  it('testing functionality of handleBlur method', () => {
-    const value = get(instant, 'props.input.value', '');
-    console.log('char', value.length);
-    console.log('value', value);
-
-    expect(value).toEqual(' Sample Text ');
-    instant.handleBlur({ target: { value: String(value) } });
-
-    // component.update(
-    //   <InputTextArea
-    //     input={{ name: 'field', value: 'Sample Text' }}
-    //     meta={{ touched: false, error: null }}
-    //   />
-    // );
-
-    console.log('char', value.length);
-    console.log('instant', instant);
-
-    expect(get(instant, 'props.input.value', '')).toEqual('Sample Text');
+  beforeEach(() => {
+    store = createStore(combineReducers({ form: formReducer }));
+    wrapper = mount(
+      <Provider store={store}>
+        <SampleForm id="formelement" />
+      </Provider>
+    );
   });
 
-  it('renders  without error', () => {
-    const props = {
-      input: { name: 'field' },
-      label: 'field',
-      placeholder: 'placeholder',
-      meta: { touched: false, error: null }
-    };
-    expect(tree(props)).toMatchSnapshot();
+  afterEach(() => {
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders with values', () => {
-    const props = {
-      input: { name: 'field' },
-      label: 'field',
-      value: 'Some text',
-      meta: { touched: true, error: null }
-    };
-    expect(tree(props)).toMatchSnapshot();
-  });
-  it('renders error, not touched', () => {
-    const props = {
-      input: { name: 'field' },
-      label: 'field',
-      meta: { touched: false, error: 'Required' }
-    };
-    expect(tree(props)).toMatchSnapshot();
+  it('Test InputTextArea with isFill validation error', () => {
+    const InputTextArea = wrapper.find('InputTextArea').instance();
+    const input = wrapper.find('#bio');
+    input.at(0).simulate('blur', { target: { value: '' } });
+    expect(get(InputTextArea, 'props.meta.error', false)).toBe('Required');
+    expect(get(InputTextArea, 'props.meta.touched', false)).toBeTruthy();
   });
 
-  it('renders error, and touched', () => {
-    const props = {
-      input: { name: 'field' },
-      label: 'field',
-      meta: { touched: true, error: 'Required' }
-    };
-    expect(tree(props)).toMatchSnapshot();
+  it('Test InputTextArea in change without afterChange props', () => {
+    const input = wrapper.find('#bio');
+    input.at(0).simulate('change', { target: { value: 'sample' } });
+    expect(input.at(0).text()).toEqual('sample');
   });
 
-  it('renders disabled', () => {
-    const props = {
-      input: { name: 'field' },
-      label: 'field',
-      meta: { touched: false, error: null },
-      disabled: true
-    };
-    expect(tree(props)).toMatchSnapshot();
+  it('Test InputTextArea Change event with afterChange props', () => {
+    const input = wrapper.find('SampleForm').instance();
+    input.setState({ afterChangeState: true });
+    const textArea = wrapper.find('#bio');
+    textArea.at(0).simulate('change', { target: { value: 'sample' } });
+    expect(textArea.at(0).text()).toEqual('sample');
+  });
+
+  it('Test InputTextArea in blur event with afterChange', () => {
+    const input = wrapper.find('SampleForm').instance();
+    input.setState({ afterChangeState: true });
+    const textArea = wrapper.find('#bio');
+    textArea.at(0).simulate('blur', { target: { value: ' Sample ' } });
+    expect(textArea.at(0).text()).toEqual('Sample');
+  });
+  it('Test InputTextArea in blur event without afterChange', () => {
+    const input = wrapper.find('SampleForm').instance();
+    input.setState({ afterChangeState: false });
+    const textArea = wrapper.find('#bio');
+    textArea.at(0).simulate('blur', { target: { value: ' Sample ' } });
+    expect(textArea.at(0).text()).toEqual('Sample');
   });
 });

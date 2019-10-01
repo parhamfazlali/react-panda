@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SampleForm /> on InputTextArea Test InputTextArea Change event with afterChange props 1`] = `ReactWrapper {}`;
+
+exports[`<SampleForm /> on InputTextArea Test InputTextArea in blur event with afterChange 1`] = `ReactWrapper {}`;
+
+exports[`<SampleForm /> on InputTextArea Test InputTextArea in blur event without afterChange 1`] = `ReactWrapper {}`;
+
+exports[`<SampleForm /> on InputTextArea Test InputTextArea in change without afterChange props 1`] = `ReactWrapper {}`;
+
+exports[`<SampleForm /> on InputTextArea Test InputTextArea with isFill validation error 1`] = `ReactWrapper {}`;

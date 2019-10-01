@@ -4,6 +4,7 @@ import { Select } from 'antd';
 import type { FormProps } from 'redux-form';
 
 import StyleWrapper from './input.style';
+// const { Option } = Select;
 
 type Props = {
   placeholder: String,

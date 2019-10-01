@@ -10,9 +10,10 @@ type Props = {
   label: string
 } & FormProps;
 
+// const { TextArea } = Input;
+
 export default class InputTextArea extends PureComponent<Props> {
   handleBlur = (event: Object) => {
-    console.log('handleBlur Called');
     const { input, afterChange } = this.props;
     input.onBlur();
     const value = event.target.value.trim();
@@ -38,8 +39,6 @@ export default class InputTextArea extends PureComponent<Props> {
       afterChange,
       ...reset
     } = this.props;
-
-    console.log('input value', input);
 
     return (
       <StyleWrapper>
