@@ -91,24 +91,6 @@ export class Users extends PureComponent<Props, State> {
     history.push(`/users/${id}`);
   };
 
-  renderUserList = () => {
-    const { users } = this.props;
-    const usersList = get(users, 'data.data', []);
-
-    if (users.fetching === null || users.fetching) return <Spin />;
-
-    return (
-      <div>
-        <Table
-          dataSource={usersList}
-          columns={this.columns}
-          rowKey="id"
-          onChange={this.handlePaginate}
-        />
-      </div>
-    );
-  };
-
   render() {
     const { users } = this.props;
     const { visibleModal, userId } = this.state;
@@ -131,8 +113,19 @@ export class Users extends PureComponent<Props, State> {
           </Button>
         </div>
 
-        <div>{this.renderUserList()}</div>
+        <h2 className="sections-header">Users Table View</h2>
+        {users.fetching === null || users.fetching ? (
+          <Spin />
+        ) : (
+          <Table
+            dataSource={usersList}
+            columns={this.columns}
+            rowKey="id"
+            onChange={this.handlePaginate}
+          />
+        )}
 
+        <h2 className="sections-header">Users Card View</h2>
         <UsersCard user={usersList} onClick={this.showDetailsPage} />
 
         <Modal
