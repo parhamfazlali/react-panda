@@ -10,6 +10,8 @@ type Props = {
   label: string
 } & FormProps;
 
+// const { TextArea } = Input;
+
 export default class InputTextArea extends PureComponent<Props> {
   handleBlur = (event: Object) => {
     const { input, afterChange } = this.props;
