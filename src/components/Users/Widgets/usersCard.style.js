@@ -3,12 +3,15 @@ import styled from 'styled-components';
 export default styled.div`
   width: 72%;
   margin: auto;
+  min-height: 590px;
+  text-align: left;
 
   .card--item {
     display: inline-block;
     vertical-align: top;
     padding: 20px;
     width: 33.33%;
+    text-align: center;
 
     .item--innerbox {
       padding: 20px;

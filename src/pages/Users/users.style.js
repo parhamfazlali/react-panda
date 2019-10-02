@@ -70,4 +70,42 @@ export default styled.div`
       right: 0;
     }
   }
+
+  .search-users {
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    text-align: left;
+    position: relative;
+
+    .ant-input {
+      width: 403px;
+      border-radius: 40px;
+      height: 50px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 50px 0px !important;
+      border: 0 !important;
+      outline: none;
+    }
+
+    .showing-count {
+      color: #000;
+      position: absolute;
+      right: 0;
+      top: 8px;
+      font-size: 15px;
+
+      span {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .no-data {
+    width: 70%;
+    margin: auto;
+    color: #000;
+    margin-top: 180px;
+    text-transform: uppercase;
+  }
 `;
