@@ -3,6 +3,8 @@
 *.log
 
 # directories
+.idea
+.vscode
 coverage
 node_modules
 public/build
