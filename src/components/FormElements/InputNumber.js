@@ -1,7 +1,7 @@
 // @flow
-import React, { PureComponent } from 'react';
-import type { FormProps } from 'redux-form';
+import React from 'react';
 import { InputNumber } from 'antd';
+import type { FormProps } from 'redux-form';
 
 import StyleWrapper from './input.style';
 
@@ -17,9 +17,18 @@ type Props = {
   step: number | null
 } & FormProps;
 
-export default class InputNumberSpinner extends PureComponent<Props> {
-  handleChange = (value: Object) => {
-    const { input, afterChange, min, max, step } = this.props;
+export default function(props: Props) {
+  const {
+    input,
+    label,
+    className = '',
+    meta: { touched, error },
+    readOnly = false,
+    ...rest
+  } = props;
+
+  function handleChange(value: Object) {
+    const { min, max, step, afterChange } = props;
     if (
       !value ||
       (typeof value === 'number' &&
@@ -33,36 +42,25 @@ export default class InputNumberSpinner extends PureComponent<Props> {
         afterChange(value);
       }
     }
-  };
-
-  render() {
-    const {
-      input,
-      label,
-      className = '',
-      meta: { touched, error },
-      readOnly = false,
-      ...rest
-    } = this.props;
-
-    return (
-      <StyleWrapper>
-        <div
-          className={`c-input number${className} ${
-            readOnly ? ' readOnly-field' : ''
-          }`}
-        >
-          {label && <span className="labelText">{label}</span>}
-
-          <InputNumber {...input} {...rest} onChange={this.handleChange} />
-
-          {touched && error && (
-            <div className="text-danger">
-              <span className="text-danger--text">{error}</span>
-            </div>
-          )}
-        </div>
-      </StyleWrapper>
-    );
   }
+
+  return (
+    <StyleWrapper>
+      <div
+        className={`c-input number ${className} ${
+          readOnly ? ' readOnly-field' : ''
+        }`}
+      >
+        {label && <span className="labelText">{label}</span>}
+
+        <InputNumber {...input} {...rest} onChange={handleChange} />
+
+        {touched && error && (
+          <div className="text-danger">
+            <span className="text-danger--text">{error}</span>
+          </div>
+        )}
+      </div>
+    </StyleWrapper>
+  );
 }
