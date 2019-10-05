@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { get } from 'lodash';
-import { Avatar, Table, Button, Spin, Modal, Icon } from 'antd';
+import { Avatar, Table, Button, Spin, Modal, Icon, Input } from 'antd';
 
 import { loadAll as loadAllUsers } from 'actions/users.action';
 import { UsersCard, UsersDetails } from 'components';
@@ -18,14 +18,16 @@ type Props = {
 
 type State = {
   visibleModal: boolean,
-  userId: ?string
+  userId: ?string,
+  query: string
 };
 
 // Export this for unit testing more easily
 export class Users extends PureComponent<Props, State> {
   state = {
     visibleModal: false,
-    userId: null
+    userId: null,
+    query: ''
   };
 
   columns = [
@@ -91,11 +93,28 @@ export class Users extends PureComponent<Props, State> {
     history.push(`/users/${id}`);
   };
 
+  updateQuery = query => {
+    this.setState(() => ({
+      query: query.trim()
+    }));
+  };
+
+  clearQuery = () => {
+    this.updateQuery('');
+  };
+
   render() {
     const { users } = this.props;
-    const { visibleModal, userId } = this.state;
+    const { visibleModal, userId, query } = this.state;
 
     const usersList = get(users, 'data.data', []);
+
+    const showingUsers =
+      query === ''
+        ? usersList
+        : usersList.filter(user =>
+            user.first_name.toLowerCase().includes(query.toLowerCase())
+          );
 
     return (
       <StyleWrapper>
@@ -126,7 +145,33 @@ export class Users extends PureComponent<Props, State> {
         )}
 
         <h2 className="sections-header">Users Card View</h2>
-        <UsersCard user={usersList} onClick={this.showDetailsPage} />
+        <div className="search-users">
+          <Input
+            placeholder="Search user..."
+            size="large"
+            value={query}
+            onChange={event => this.updateQuery(event.target.value)}
+          />
+
+          <div className="showing-count">
+            {showingUsers.length !== usersList.length && (
+              <div>
+                <span>
+                  Now showing {showingUsers.length} of {usersList.length}
+                </span>
+                <Button type="primary" shape="round" onClick={this.clearQuery}>
+                  Show all
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {showingUsers.length === 0 && (
+          <div className="no-data">No user(s) found!</div>
+        )}
+
+        <UsersCard user={showingUsers} onClick={this.showDetailsPage} />
 
         <Modal
           className="c--modal"
