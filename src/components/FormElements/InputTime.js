@@ -1,5 +1,4 @@
-// @flow
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { TimePicker } from 'antd';
 import moment from 'moment';
 import type { FormProps } from 'redux-form';
@@ -13,41 +12,39 @@ type Props = {
   input: any
 } & FormProps;
 
-export default class InputTime extends PureComponent<Props> {
-  onChange = (_: any, time: any) => {
-    const { input, afterChange } = this.props;
+export default function(props: Props) {
+  const {
+    timeFormat,
+    input,
+    label,
+    meta: { touched, error },
+    ...rest
+  } = props;
+
+  function onChange(_: any, time: any) {
+    const { afterChange } = props;
     input.onChange(time);
     if (afterChange) {
       afterChange(time);
     }
-  };
-
-  render() {
-    const {
-      timeFormat,
-      input,
-      label,
-      meta: { touched, error },
-      ...rest
-    } = this.props;
-
-    const value = input.value ? moment(input.value, timeFormat) : null;
-
-    return (
-      <StyleWrapper>
-        <div className="c-input datepicker">
-          {label && <span className="labelText"> {label} </span>}
-          <TimePicker
-            {...input}
-            {...rest}
-            onChange={this.onChange}
-            value={value}
-            format={timeFormat}
-            getPopupContainer={trigger => trigger.parentNode}
-          />
-          {touched && error && <span className="text-danger">{error}</span>}
-        </div>
-      </StyleWrapper>
-    );
   }
+
+  const value = input.value ? moment(input.value, timeFormat) : null;
+
+  return (
+    <StyleWrapper>
+      <div className="c-input datepicker">
+        {label && <span className="labelText"> {label} </span>}
+        <TimePicker
+          {...input}
+          {...rest}
+          onChange={onChange}
+          value={value}
+          format={timeFormat}
+          getPopupContainer={trigger => trigger.parentNode}
+        />
+        {touched && error && <span className="text-danger">{error}</span>}
+      </div>
+    </StyleWrapper>
+  );
 }
