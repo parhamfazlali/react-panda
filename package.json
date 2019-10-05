@@ -71,6 +71,7 @@
       "raf/polyfill"
     ],
     "setupFilesAfterEnv": [
+      "jest-extended",
       "<rootDir>/config/jest/setup.js"
     ],
     "globals": {
@@ -132,6 +133,7 @@
     "history": "^4.10.1",
     "hpp": "^0.2.2",
     "html-minifier": "^4.0.0",
+    "jest-extended": "^0.11.2",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
