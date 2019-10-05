@@ -1,5 +1,4 @@
-// @flow
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import type { FormProps } from 'redux-form';
@@ -13,43 +12,38 @@ type Props = {
   input: any
 } & FormProps;
 
-export default class InputDate extends PureComponent<Props> {
-  onChange = (_: any, date: any) => {
-    const { input, afterChange } = this.props;
+export default function(props: Props) {
+  const {
+    dateFormat,
+    input,
+    label,
+    meta: { touched, error },
+    ...rest
+  } = props;
+
+  function onChange(_: any, date: any) {
+    const { afterChange } = props;
     input.onChange(date);
     if (afterChange) {
       afterChange(date);
     }
-  };
-
-  render() {
-    const {
-      dateFormat,
-      input,
-      label,
-      meta: { touched, error },
-      ...rest
-    } = this.props;
-
-    const value = input.value ? moment(input.value, dateFormat) : null;
-
-    return (
-      <StyleWrapper>
-        <div className="c-input datepicker">
-          {label && <span className="labelText"> {label} </span>}
-          <DatePicker
-            {...input}
-            {...rest}
-            onChange={this.onChange}
-            value={value}
-            format={dateFormat}
-            getPopupContainer={trigger => trigger.parentNode}
-          />
-          {touched && error && (
-            <span className="text-danger--text">{error}</span>
-          )}
-        </div>
-      </StyleWrapper>
-    );
   }
+
+  const value = input.value ? moment(input.value, dateFormat) : null;
+  return (
+    <StyleWrapper>
+      <div className="c-input datepicker">
+        {label && <span className="labelText"> {label} </span>}
+        <DatePicker
+          {...input}
+          {...rest}
+          onChange={onChange}
+          value={value}
+          format={dateFormat}
+          getPopupContainer={trigger => trigger.parentNode}
+        />
+        {touched && error && <span className="text-danger--text">{error}</span>}
+      </div>
+    </StyleWrapper>
+  );
 }
