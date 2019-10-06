@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputSwitch /> Create Snapshot <InputSwitch /> 1`] = `
+<div
+  className="inputstyle___default-cujm1d-0 ecaWej"
+>
+  <div
+    className="c-switch"
+  >
+    <label
+      className="noselect uppercasepurple-label"
+      htmlFor="field"
+    >
+      <span
+        className="switch--label"
+      >
+        field
+      </span>
+      <button
+        aria-checked={false}
+        checked={false}
+        className="ant-switch"
+        defaultChecked={false}
+        id="field"
+        name="field"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        />
+      </button>
+    </label>
+  </div>
+</div>
+`;
